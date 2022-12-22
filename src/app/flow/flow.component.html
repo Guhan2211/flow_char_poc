@@ -1,0 +1,102 @@
+
+<div class="ms-2 me-2">
+  <div class="row">
+    <div class="col-md-12 ">
+        <div class="row ">
+
+
+
+
+          <div ngbDropdown class="d-inline-block">
+            <button type="button" class="btn btn-outline-primary" id="dropdownBasic1" ngbDropdownToggle>
+              Select App
+            </button>
+            <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+
+              <button ngbDropdownItem [id]="item.name" *ngFor="let item of app"
+               (click)=createflow(item.name)
+               type="button"
+               >
+
+               {{item.name}}
+
+
+              </button>
+
+            </div>
+          </div>
+          <!-- <div class="d-inline-block">
+            <select  class="btn btn-outline-primary " aria-label="select App">
+              <option   class="dropdown-item btn btn-outline-light " disabled selected>Select App</option>
+              <option class="dropdown-item"  *ngFor="let item of app" [value]="item.name">{{item.name}}</option>
+
+            </select>
+          </div> -->
+
+
+
+        </div>
+        <div class="row">
+
+            <h3 class="text-center">{{selectedapp?.name|uppercase}}</h3>
+
+            <!-- Button trigger modal -->
+            <!-- <button type="button" data-bs-toggle="modal" data-bs-target="#myModal">Launch modal</button> -->
+
+
+
+
+
+            <div *ngIf="showflow" class="d-flex flex-row bd-highlight mb-3 " >
+
+
+              <button *ngFor="let step of flow"
+              class="p-2 mx-auto  comps"
+              type="button"  (click)="openModal(step)">
+
+                {{step}}
+
+              </button>
+
+
+            </div>
+
+            <div id="modals">
+              <div class="modal fade"
+              *ngFor="let step of flow"
+              [id]="step" tabindex="-1"
+              aria-labelledby="myModal"
+              aria-hidden="true" >
+
+
+                <div class="modal-dialog modal-dialog-centered">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="exampleModalLabel">{{step}}</h5>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                      <ul>
+                        <li  *ngFor="let srv of selectedapp[step]">{{srv}}</li>
+                      </ul>
+                    </div>
+
+                  </div>
+                </div>
+
+
+              </div>
+
+            </div>
+
+
+
+        </div>
+        <!-- <div class="row" #flowchart *ngIf="showflow">
+          <ngx-org-chart [nodes]="nodes" direction="horizontal" (itemClick)="test($event)"></ngx-org-chart>
+        </div> -->
+    </div>
+  </div>
+
+
+</div>
